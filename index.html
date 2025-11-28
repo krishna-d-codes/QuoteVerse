@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuoteVerse - Professional Quote Generator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Animated Background Particles -->
+    <div class="particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Settings Panel -->
+        <div class="settings-panel" id="settingsPanel">
+            <button class="close-settings" id="closeSettings">×</button>
+            <h3>Customize</h3>
+            
+            <div class="setting-group">
+                <label>Choose Theme</label>
+                <div class="theme-buttons">
+                    <button class="theme-btn active" data-theme="purple">Purple</button>
+                    <button class="theme-btn" data-theme="ocean">Ocean</button>
+                    <button class="theme-btn" data-theme="sunset">Sunset</button>
+                    <button class="theme-btn" data-theme="forest">Forest</button>
+                </div>
+            </div>
+
+            <div class="setting-group">
+                <label>Font Size</label>
+                <input type="range" id="fontSlider" min="16" max="28" value="22" step="2">
+                <span id="fontValue">22px</span>
+            </div>
+
+            <div class="setting-group">
+                <label>
+                    <input type="checkbox" id="autoPlay" class="toggle">
+                    Auto-play quotes (5s)
+                </label>
+            </div>
+        </div>
+
+        <!-- Main Card -->
+        <div class="card">
+            <!-- Header with Logo and Controls -->
+            <div class="card-header">
+                <div class="logo">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                    <span>QuoteVerse</span>
+                </div>
+                <div class="controls">
+                    <button class="icon-btn" id="settingsBtn" title="Settings">
+  <!-- New Gear Icon (modern & clean) -->
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="3"></circle>
+    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+  </svg>
+</button>
+
+                    <button class="icon-btn" id="favoriteBtn" title="Add to Favorites">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Category Selector -->
+            <div class="category-selector">
+                <button class="category-btn active" data-category="all">All</button>
+                <button class="category-btn" data-category="motivation">Motivation</button>
+                <button class="category-btn" data-category="success">Success</button>
+                <button class="category-btn" data-category="life">Life</button>
+                <button class="category-btn" data-category="wisdom">Wisdom</button>
+            </div>
+
+            <!-- Quote Display -->
+            <div class="quote-section">
+                <div class="quote-icon">"</div>
+                <div class="quote-container">
+                    <p class="quote-text" id="quoteText">Loading inspiration...</p>
+                </div>
+                <div class="quote-footer">
+                    <p class="quote-author" id="quoteAuthor"></p>
+                    <span class="quote-category" id="quoteCategory"></span>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <button class="action-btn secondary" id="copyBtn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                    Copy
+                </button>
+                <button class="action-btn secondary" id="shareBtn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="18" cy="5" r="3"></circle>
+                        <circle cx="6" cy="12" r="3"></circle>
+                        <circle cx="18" cy="19" r="3"></circle>
+                        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                    </svg>
+                    Share
+                </button>
+                <button class="action-btn primary" id="newQuoteBtn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"></path>
+                    </svg>
+                    New Quote
+                </button>
+            </div>
+
+            <!-- Stats Section -->
+            <div class="stats-section">
+                <div class="stat-item">
+                    <span class="stat-value" id="quotesViewed">0</span>
+                    <span class="stat-label">Quotes Viewed</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value" id="favoriteCount">0</span>
+                    <span class="stat-label">Favorites</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value" id="shareCount">0</span>
+                    <span class="stat-label">Shared</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Favorites Panel -->
+        <div class="favorites-panel" id="favoritesPanel">
+            <h3>Your Favorites <span class="favorite-badge" id="favoriteBadge">0</span></h3>
+            <div class="favorites-list" id="favoritesList">
+                <p class="empty-message">No favorites yet. Click the ❤️ to save quotes!</p>
+            </div>
+            <button class="clear-favorites" id="clearFavorites">Clear All</button>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+
+    <!-- Footer -->
+    <footer>
+        <p>Made by Krishna Dighe</p>
+        <p class="footer-subtitle">Inspiring minds, one quote at a time</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
