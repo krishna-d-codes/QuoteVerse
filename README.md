@@ -15,6 +15,11 @@ QuoteVerse is a beautifully designed, feature-rich web app that delivers motivat
 - 🎈 **Animated particle background for a modern aesthetic**
 - 📱 **Fully responsive design**
 
+- <img width="1920" height="1020" alt="Screenshot 2025-11-29 143657" src="https://github.com/user-attachments/assets/b0f8b0dd-10e6-4c4c-a1ee-a7428958cd74" />
+
+  <img width="1920" height="1020" alt="Screenshot 2025-11-29 143721" src="https://github.com/user-attachments/assets/cb890481-1413-46b2-9dae-b40722baac63" />
+
+
 ## 🚀 Tech Stack
 - **HTML**
 - **CSS (Advanced UI + Animations)**
